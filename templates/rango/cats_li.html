@@ -1,0 +1,22 @@
+{% if cats %}
+    {% for c in cats %}
+        <li class="cat">
+            <a href="{% url 'category'  c.slug %}">
+                <strong>{{ c.name_ch }}</strong>({{ c.likes }} likes)<br>
+            </a>
+        </li>
+    {% endfor %}
+
+{% elif subs %}
+    {% for c in subs %}
+		<li class="active cat" >
+			<a href="{% url 'subject'  c.slug %}">
+            <strong>{{ c.title_ch }}</strong>
+            <span class="likes">({{ c.likes }} likes)</span><br>
+			</a>
+		</li>
+    {% endfor %}
+    <li><a class="search_pointer"><strong class="grey">Search for courses..</strong></a>
+{% else %}
+    <li> <a><strong>Nothing.. </strong><br>(Please input number or key words) </a></li>
+{% endif %}

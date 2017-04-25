@@ -1,0 +1,26 @@
+{% if categories %}
+    <ul class="nav nav-sidebar">
+        <li id="nav_search">
+            <a class="search_pointer"><strong><span class="glyphicon glyphicon-search"></span> Search </strong></a>
+        </li>
+        <li style="display:none;" id="nav_search_content">
+            <a>
+                <input  class="form-control" type="text" name="suggestion" value="" id="suggestion" />
+            </a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar" id="categories">
+        <!--<li><a><strong class="grey">Hottest Courses</strong></a></li>-->
+        {% for c in categories %}
+            <li class="active cat" >
+				<a href="{% url 'category' c.slug %}">
+                <strong>{{ c.name_ch }}</strong>
+                <span class="likes">({{ c.likes }} likes)</span><br>
+            </a></li>
+        {% endfor %}
+        <li><a class="search_pointer"><strong class="grey">Search for more..</strong></a>
+{% else %}
+    <li> <strong >There are no course present.</strong></li>
+    </ul>
+{% endif %}
+

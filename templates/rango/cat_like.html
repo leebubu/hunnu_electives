@@ -1,0 +1,58 @@
+{% load staticfiles %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
+<button id="liked" style="display:none" data-catid="{{category.id}}" class="btn btn-info btn-xs active">
+    <span class="glyphicon glyphicon-heart"></span> liked
+</button>
+<button  id="likes" style="display:none" data-catid="{{category.id}}" class="btn btn-primary btn-xs active">
+    <span class="glyphicon glyphicon-heart"></span> like
+</button>
+
+{% if category.likes > 1 %}
+    <span id="like_count" class="more">
+        <strong>{{ category.likes }}</strong> people like this course
+    </span>
+
+{% else  %}
+    <span id="like_count" class="more"> T^T no one likes me</span>
+{% endif %}
+
+
+<script>
+    {% if is_liked %}
+        $('#likes').hide();$('#liked').show();
+    {% else %}
+        $('#liked').hide();$('#likes').show();
+    {% endif %}
+
+
+    // likes function
+    {% if user.is_authenticated %}
+        $('#likes').click(function(){
+            var catid;
+            catid = $(this).attr("data-catid");
+            $.get('/rango/like_category/', {category_id: catid}, function(data){
+                var like_str = '';
+                if(data==0){
+                    like_str = '&nbsp;T^T no one likes me';
+                }else if(data==1){
+                    like_str = '<strong>&nbsp;'+data+'</strong> people likes this course';
+                }else{
+                    like_str = '<strong>&nbsp;'+data+'</strong> people like this course';
+                }
+                $('#like_count').html(like_str);
+
+                $('#likes').hide();
+                $('#liked').show();
+                alert('thank u for your like~');
+            });
+        });
+
+    {% else %}
+        $('#likes').click(function(){
+            alert("Login to like this course.")
+            window.open("{% url 'auth_login' %}?next={{request.path}}", "_self")
+        });
+    {% endif %}
+
+</script>

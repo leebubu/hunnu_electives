@@ -1,0 +1,16 @@
+{% if cams %}
+    <ul class="nav nav-sidebar">
+    {% for c in cams %}
+        {% if c == act_cam %} 
+			<li  class="active" > 
+		{% else  %} 
+			<li>
+		{% endif %}
+           <li><a href="/rango/campus/{{ c.slug }}">{{ c.name_ch }}</a></li>
+    {% endfor %}
+
+{% else %}
+    <li> <strong >There are no campus present.</strong></li>
+
+    </ul>
+{% endif %}

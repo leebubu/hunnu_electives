@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+
+{% block body_block %}
+<!--
+<script>
+	$("body").attr('class', 'index_bg');
+</script>
+-->
+<div class="row placeholders">
+    <div class="col-xs-12 col-sm-6 placeholder">
+        <div class="list-group">
+            <a class="list-group-item active">
+                <h3 class="list-group-item-heading"><b>院系</b></h3>
+            </a>
+	
+			{% if subjects %}
+				{% for s in subjects %}
+					<a class="list-group-item" href="{% url 'subject' s.slug %}">
+						<b>{{ s.title_ch }}</b>
+						<!--<i class="fa fa-comments-o"></i> {{ s.category_count }}-->
+						<span class="badge">{{ s.category_count }}</span>
+					</a>
+				{% endfor %}
+			{% else %}
+				<strong>There are no subjects present.</strong>
+			{% endif %}
+		</div>
+	</div>
+	
+
+    <div class="col-xs-12 col-sm-6 placeholder">
+            <div class="list-group">
+                <a class="list-group-item active">
+                    <h3 class="list-group-item-heading"><b>课程</b></h3>
+               
+                </a>
+		{% if categories %}
+			
+				{% for category in categories %}
+				<a class="list-group-item" href="{% url 'category' category.slug %}">
+				<b>{{ category.name_ch }}</b>
+				<span class="likes">(
+				<i class="fa fa-commenting-o"></i> {{ category.answer_count }}
+				&nbsp
+				<i class="fa fa-thumbs-o-up"></i> {{ category.likes }}
+                &nbsp
+				 </span>)
+				</a>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<strong>There are no categories present.</strong></br>
+		{% endif %}
+		</div>
+		
+		
+</div>		
+		
+	
+{% endblock %}

@@ -1,0 +1,29 @@
+<div class="filter_search">
+    <div class="input-group" id="search_input">
+        <input id="sub_keyword" type="text" class="form-control" placeholder="Search for..." value="{{ keyword }}">
+        <input id="subject_name_slug" value="{{ subject_name_slug }}" type="hidden">
+        <span class="input-group-btn">
+            <button onclick="sub_search('{% url 'subject' subject_name_slug %}')" class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+        </span>
+    </div>
+</div>
+
+<!-- Single button -->
+<div class="btn-group filter_left">
+    <div class="btn-group" role="group" aria-label="...">
+        <a onclick="sub_filter" id="filter_btn" class="btn btn-default" href="{% url 'subject' subject_name_slug %}" role="button">answers</a>
+
+        <div class="btn-group">
+          <button id="filter_btn" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            level&nbsp <span class="caret"></span>
+          </button>
+  
+        </div>
+    </div>
+</div>
+
+<script>
+    sub_filter('{{ order }}');
+</script>

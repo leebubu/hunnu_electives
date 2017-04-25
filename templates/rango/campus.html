@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block title %}{{ campus_name_ch }}{% endblock %}
+
+{% block body_block %}
+	 <!--<link rel="stylesheet" type="text/css" href="{% static 'js_plugins/gridloading/css/default.css' %}" />-->
+    <link rel="stylesheet" type="text/css" href="{% static 'js_plugins/gridloading/css/component.css' %}" />
+    <script src="{% static 'js_plugins/gridloading/js/modernizr.custom.js' %}"></script>
+    <link href="{% static 'css/parts/subs_cats.css' %}" rel="stylesheet">
+
+
+    <script src="{% static 'js_plugins/gridloading/js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'js_plugins/gridloading/js/imagesloaded.js' %}"></script>
+    <script src="{% static 'js_plugins/gridloading/js/classie.js' %}"></script>
+    <script src="{% static 'js_plugins/gridloading/js/AnimOnScroll.js' %}"></script>
+
+
+    <div class="blur" style="height:100%"></div>
+    
+	<div class="box">
+	<h1>{{ campus_name_ch }}</h1>
+	
+		{% if subjects %}
+		<ul></br>
+			{% for subject in subjects %}
+				<h4><a class="list-group-item" href="{% url 'subject' subject.slug %}">{{ subject.title_ch }}
+				<span class="likes">(
+				<i class="fa fa-bars"></i> {{ subject.category_count }}
+				&nbsp)
+				</a></h4>
+			{% endfor %}
+		</ul>
+		{% else %}
+			<strong>No Campus!</strong>
+		{% endif %}
+	</div>
+{% endblock %}
