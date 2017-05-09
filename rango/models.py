@@ -10,8 +10,8 @@ from DjangoUeditor.commands import UEditorEventHandler
 
 class Campus(models.Model):
     name = models.CharField(max_length=128)
-    name_ch = models.CharField(max_length=100, blank=True)
-    views = models.IntegerField(default=0)
+    name_ch = models.CharField(max_length=100)
+    #views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
 	
     def save(self, *args, **kwargs):
@@ -25,8 +25,8 @@ class Campus(models.Model):
 class Subject(models.Model):
     title = models.CharField(max_length=128)
     title_ch = models.CharField(max_length=100, blank=True)
-    views = models.IntegerField(default=0)
-    likes = models.IntegerField(default=0)
+    #views = models.IntegerField(default=0)
+    #likes = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
 
     campus = models.ForeignKey(Campus)
@@ -40,7 +40,7 @@ class Subject(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
     name_ch = models.CharField(max_length=100, blank=True)
-    views = models.IntegerField(default=0)
+    #views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
 	
@@ -54,7 +54,7 @@ class Category(models.Model):
         return self.name
 
 
-		
+'''		
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
@@ -66,6 +66,7 @@ class UserProfile(models.Model):
     # Override the __unicode__() method to return out something meaningful!
     def __unicode__(self):
         return self.user.username
+'''
 		
 class CategoryUserLikes(models.Model):
     category = models.ForeignKey(Category)

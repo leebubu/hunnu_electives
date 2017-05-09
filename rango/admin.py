@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from rango.models import Category, Subject, Answers, Campus, AnswerUserLikes, AnswerUserDislikes
-from rango.models import UserProfile
+#from rango.models import UserProfile
 
 class CampusAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug':('name',)}

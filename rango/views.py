@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from rango.models import Category, Subject, Campus, User, Answers, CategoryUserLikes
 from rango.forms import CategoryForm, TestUeditorModelForm
-from rango.forms import UserForm, UserProfileForm
+#from rango.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
